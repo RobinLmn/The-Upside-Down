@@ -5,6 +5,9 @@ EditorUserSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 4
   m_ConfigSettings:
+    UnityRemoteJoystickSource:
+      value: 315459091150
+      flags: 0
     lightmappingDeviceAndPlatform:
       value: 53
       flags: 0
