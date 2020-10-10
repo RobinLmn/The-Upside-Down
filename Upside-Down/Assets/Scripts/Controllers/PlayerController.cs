@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController myCharController;
     [SerializeField] private float mySpeed;
 
-    private Vector3 myVelocity;
+    public Vector3 myVelocity;
     [SerializeField] private float myGravityScaler;
     private const float gravity = -9.81f;
 
