@@ -13,13 +13,14 @@ public class AttackState : State
         myMonster = aMonster;
     }
 
+    public override void StartState()
+    {
+        isGameOver = true;
+    }
+
     public override IEnumerator Do()
     {
-        if (!isGameOver)
-        {
-            Debug.Log("Player Dies");
-            isGameOver = true;
-        }
+        Debug.Log("Player Dies");
         yield break;
     }
 
@@ -27,7 +28,7 @@ public class AttackState : State
     {
         if (isGameOver)
         {
-            Debug.Log("Transitioning in RoamState");
+            Debug.Log("Transitioning into RoamState");
             return typeof(RoamState);
         }
         return typeof(AttackState);

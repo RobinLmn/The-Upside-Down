@@ -34,7 +34,7 @@ public class RoamState : State
     {
         if (myPlayerIsTooStill)
         {
-            Debug.Log("Transitionning in SearchState");
+            Debug.Log("Transitioning from RoamState to SearchState");
             return typeof(SearchState);
         }
         else return typeof(RoamState);

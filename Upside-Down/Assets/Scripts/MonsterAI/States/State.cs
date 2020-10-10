@@ -33,6 +33,7 @@ public abstract class State
             }
             else
             {
+                timer = 0;
                 return true;
             }
         }
@@ -40,6 +41,7 @@ public abstract class State
         {
             timer = 0;
         }
+
         return false;
     }
 }

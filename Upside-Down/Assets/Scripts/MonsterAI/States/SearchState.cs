@@ -26,7 +26,8 @@ public class SearchState : State
         // Monster searches
 
         // Checks if player too still
-        isPlayerTooStill = PlayerIsTooStill(3, myMinimPlayerSpeed, myPlayer);
+        isPlayerTooStill = PlayerIsTooStill(7, myMinimPlayerSpeed, myPlayer);
+        isPlayerHiding = PlayerManager.instance.IsHiding;
 
         return base.Do();
     }
@@ -35,12 +36,12 @@ public class SearchState : State
     {
         if (isPlayerTooStill)
         {
-            Debug.Log("Transitionning in AttackState");
+            Debug.Log("Transitioning from SearchState to AttackState");
             return typeof(AttackState);
         }
         else if (isPlayerHiding || cooldownReached)
         {
-            Debug.Log("Transitionning in RoamState");
+            Debug.Log("Transitioning from SearchState to RoamState");
             return typeof(RoamState);
         }
         else
@@ -48,4 +49,6 @@ public class SearchState : State
             return typeof(SearchState);
         }
     }
+
+
 }

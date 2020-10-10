@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-
     private CharacterController myCharController;
     [SerializeField] private float mySpeed;
 
