@@ -1368,7 +1368,28 @@ MonoBehaviour:
   mixerGroup: {fileID: 0}
   sounds:
   - name: GravityReverse
+    tag: 
     clip: {fileID: 8300000, guid: 673d5b175ada24d6982c245f9aa1dd1c, type: 3}
+    volume: 1
+    volumeVariance: 1
+    pitch: 0.1
+    pitchVariance: 1
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: FloorBoardCreaking1
+    tag: ambience
+    clip: {fileID: 8300000, guid: 876a3af888cd62349a1aa9df8068b374, type: 3}
+    volume: 1
+    volumeVariance: 1
+    pitch: 0.1
+    pitchVariance: 1
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: FloorBoardCreaking2
+    tag: ambience
+    clip: {fileID: 8300000, guid: 1b9e77ce961d87f4393052d22c454ad0, type: 3}
     volume: 1
     volumeVariance: 1
     pitch: 0
@@ -1376,6 +1397,68 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  - name: FloorBoardCreaking3
+    tag: ambience
+    clip: {fileID: 8300000, guid: ab57d2867a1f156498ceb66c8a755daf, type: 3}
+    volume: 1
+    volumeVariance: 1
+    pitch: 0
+    pitchVariance: 1
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Wind1
+    tag: 
+    clip: {fileID: 8300000, guid: d5f366f786a93484197c09aac1ea138a, type: 3}
+    volume: 0.11
+    volumeVariance: 1
+    pitch: 0
+    pitchVariance: 1
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Whisper2
+    tag: 
+    clip: {fileID: 8300000, guid: 3dd11bbb8483ffe42a43c45fb2aeee62, type: 3}
+    volume: 0.306
+    volumeVariance: 1
+    pitch: 0
+    pitchVariance: 1
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Whisper1
+    tag: ambience
+    clip: {fileID: 8300000, guid: e3a4c40ad213a924ea7dbb05add936b8, type: 3}
+    volume: 0.11
+    volumeVariance: 1
+    pitch: 0
+    pitchVariance: 1
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: CharacterBreathing
+    tag: 
+    clip: {fileID: 8300000, guid: 2d5574d42eedef14d9670646ed33185d, type: 3}
+    volume: 0.344
+    volumeVariance: 1
+    pitch: 0
+    pitchVariance: 1
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: MonsterBreathing
+    tag: 
+    clip: {fileID: 8300000, guid: 6121aa5eded4d184185cea39e242369f, type: 3}
+    volume: 0.691
+    volumeVariance: 1
+    pitch: 0
+    pitchVariance: 1
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  maxTimeBetweenAmbientSounds: 20
+  minTimeBetweenAmbientSounds: 5
 --- !u!4 &1919812875
 Transform:
   m_ObjectHideFlags: 0
