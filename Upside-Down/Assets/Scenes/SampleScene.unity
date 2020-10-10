@@ -131,7 +131,7 @@ LightingSettings:
   m_PrefabAsset: {fileID: 0}
   m_Name: Settings.lighting
   serializedVersion: 2
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_EnableBakedLightmaps: 1
   m_EnableRealtimeLightmaps: 0
   m_RealtimeEnvironmentLighting: 1
@@ -449,8 +449,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPlayer: {fileID: 2112050320}
-  myMinimumSearchSpeed: 100
-  myMinimumRoamSpeed: 100
+  minSpeedInRoam: 100
+  minTimeSpeedInRoam: 5
+  maxSpeedInRoam: 100
+  maxTimeSpeedInRoam: 5
+  minSpeedInSearch: 100
+  minTimeSpeedInSearch: 3
+  maxSearchTime: 10
 --- !u!4 &469012980
 Transform:
   m_ObjectHideFlags: 0
@@ -1219,7 +1224,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1149981448
 Transform:
@@ -1583,6 +1588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e13669a5396f14cee9bb0fb3021207a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hidingTime: 5
 --- !u!1 &2123532715
 GameObject:
   m_ObjectHideFlags: 0

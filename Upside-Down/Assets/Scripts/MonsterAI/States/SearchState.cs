@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SearchState : State
@@ -8,38 +7,50 @@ public class SearchState : State
     MonsterAI myMonster;
     PlayerController myPlayer;
 
-    bool isPlayerTooStill;
-    bool isPlayerHiding;
-    bool cooldownReached;
+    bool isPlayerTooSlow;
 
-    float myMinimPlayerSpeed;
+    float myCooldownTimer = 0;
+    float myCooldown;
 
-    public SearchState(MonsterAI aMonster, PlayerController aPlayer, float aMinimSpeed)
+    SpeedCheck myMinSpeed;
+
+    public SearchState(MonsterAI aMonster, PlayerController aPlayer, SpeedCheck minSpeed, float aCooldwon)
     {
-        myMinimPlayerSpeed = aMinimSpeed;
         myPlayer = aPlayer;
         myMonster = aMonster;
+
+        myCooldown = aCooldwon;
+        myMinSpeed = minSpeed;
+    }
+
+    public override void StartState()
+    {
+        myCooldownTimer = 0;
     }
 
     public override IEnumerator Do()
     {
         // Monster searches
+        /** TODO : Feedback **/
 
-        // Checks if player too still
-        isPlayerTooStill = PlayerIsTooStill(7, myMinimPlayerSpeed, myPlayer);
-        isPlayerHiding = PlayerManager.instance.IsHiding;
+        // Checks if player too slow
+        bool minimPlayerSpeed = myMinSpeed.mySpeed >= myPlayer.GetCurrentSpeed();
+        isPlayerTooSlow = Timer(myMinSpeed.myTimeLimit, minimPlayerSpeed);
+
+        // Update cooldown
+        myCooldownTimer += Time.deltaTime;
 
         return base.Do();
     }
 
     public override Type GetTransition()
     {
-        if (isPlayerTooStill)
+        if (isPlayerTooSlow)
         {
             Debug.Log("Transitioning from SearchState to AttackState");
             return typeof(AttackState);
         }
-        else if (isPlayerHiding || cooldownReached)
+        else if (PlayerManager.instance.IsHiding || myCooldownTimer > myCooldown)
         {
             Debug.Log("Transitioning from SearchState to RoamState");
             return typeof(RoamState);
@@ -49,6 +60,4 @@ public class SearchState : State
             return typeof(SearchState);
         }
     }
-
-
 }

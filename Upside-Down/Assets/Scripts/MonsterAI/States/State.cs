@@ -5,7 +5,8 @@ using UnityEngine;
 
 public abstract class State
 {
-    float timer = 0;
+    float timer;
+    float timer2;
 
     public virtual void StartState()
     {
@@ -21,13 +22,11 @@ public abstract class State
         return null;
     }
 
-    public bool PlayerIsTooStill(float miniTime, float miniSpeed, PlayerController myPlayer)
+    public bool Timer(float timeLimit, bool condition)
     {
-        Vector2 playerSpeed = new Vector2(myPlayer.myVelocity.x, myPlayer.myVelocity.z);
-
-        if (playerSpeed.magnitude <= miniSpeed)
+        if (condition)
         {
-            if (timer < miniTime)
+            if (timer < timeLimit)
             {
                 timer += Time.deltaTime;
             }
@@ -40,6 +39,28 @@ public abstract class State
         else
         {
             timer = 0;
+        }
+
+        return false;
+    }
+
+    public bool Timer2(float timeLimit, bool condition)
+    {
+        if (condition)
+        {
+            if (timer2 < timeLimit)
+            {
+                timer2+= Time.deltaTime;
+            }
+            else
+            {
+                timer2 = 0;
+                return true;
+            }
+        }
+        else
+        {
+            timer2 = 0;
         }
 
         return false;

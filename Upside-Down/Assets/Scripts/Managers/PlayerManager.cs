@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField] private bool isHiding;
+    [SerializeField] private bool isHiding = false;
 
     public static PlayerManager instance;
 

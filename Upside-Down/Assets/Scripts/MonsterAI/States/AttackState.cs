@@ -20,7 +20,8 @@ public class AttackState : State
 
     public override IEnumerator Do()
     {
-        Debug.Log("Player Dies");
+        /** TODO : Respawn Mechanic **/
+        Debug.Log("Player Dies"); 
         yield break;
     }
 

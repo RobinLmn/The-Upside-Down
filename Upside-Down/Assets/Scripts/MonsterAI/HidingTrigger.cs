@@ -4,12 +4,32 @@ using UnityEngine;
 
 public class HidingTrigger : MonoBehaviour
 {
+    float triggerEnterTime = 0;
+    bool isHiding = false;
+
+    [SerializeField] private float hidingTime;
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("HidingSpot"))
         {
-            PlayerManager.instance.IsHiding = true;
+            isHiding = true;
+            triggerEnterTime = 0;
+        }
+    }
+
+    public void Update()
+    {
+        if (isHiding)
+        {
+            if (triggerEnterTime > hidingTime)
+            {
+                PlayerManager.instance.IsHiding = true;
+            }
+            else
+            {
+                triggerEnterTime += Time.deltaTime;
+            }
         }
     }
 
@@ -18,6 +38,8 @@ public class HidingTrigger : MonoBehaviour
         if (other.CompareTag("HidingSpot"))
         {
             PlayerManager.instance.IsHiding = false;
+            isHiding = false;
+            triggerEnterTime = 0;
         }
     }
 }

@@ -67,4 +67,10 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
     }
+
+    public float GetCurrentSpeed()
+    {
+        Vector2 currVelocity = new Vector2(myVelocity.x, myVelocity.y);
+        return currVelocity.magnitude;
+    }
 }

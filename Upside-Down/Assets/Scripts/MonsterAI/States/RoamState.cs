@@ -7,32 +7,42 @@ public class RoamState : State
 {
     MonsterAI myMonster;
     PlayerController myPlayer;
-    float myPlayerMinimSpeed;
-    float timer = 0f;
 
-    bool myPlayerIsTooStill = false;
+    bool myPlayerIsTooSlow = false;
+    bool myPlayerIsTooFast = false;
 
-    public RoamState(MonsterAI aMonster, PlayerController aPlayer, float aPlayerMinimSpeed)
+    SpeedCheck myMinSpeed;
+    SpeedCheck myMaxSpeed;
+
+    public RoamState(MonsterAI aMonster, PlayerController aPlayer, SpeedCheck minSpeed, SpeedCheck maxSpeed)
     {
         myPlayer = aPlayer;
-        myPlayerMinimSpeed = aPlayerMinimSpeed;
         myMonster = aMonster;
+
+        myMinSpeed = minSpeed;
+        myMaxSpeed = maxSpeed;
     }
 
     // Runs in Update
     public override IEnumerator Do()
     {
         // Monster is roaming around the map
+        /** TODO : Feedback **/
 
-        // Checks if player is too still
-        myPlayerIsTooStill = PlayerIsTooStill(5f, myPlayerMinimSpeed, myPlayer);
+        // Checks if player is too slow
+        bool playerIsTooSlow = myPlayer.GetCurrentSpeed() <= myMinSpeed.mySpeed;
+        myPlayerIsTooSlow = Timer(myMinSpeed.myTimeLimit, playerIsTooSlow);
+
+        // Checks if player is too fast / too loud
+        bool playerIsTooFast = myPlayer.GetCurrentSpeed() >= myMaxSpeed.mySpeed;
+        myPlayerIsTooFast = Timer2(myMaxSpeed.myTimeLimit, playerIsTooFast);
 
         return base.Do();
     }
 
     public override Type GetTransition()
     {
-        if (myPlayerIsTooStill)
+        if (myPlayerIsTooSlow || myPlayerIsTooFast)
         {
             Debug.Log("Transitioning from RoamState to SearchState");
             return typeof(SearchState);
