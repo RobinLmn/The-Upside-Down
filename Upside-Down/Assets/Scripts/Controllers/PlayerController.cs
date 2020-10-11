@@ -21,9 +21,11 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Transform myCameraTransform;
 
+    private AudioManager myAudioManager;
     void Start()
     {
         myCharController = GetComponent<CharacterController>();
+        myAudioManager = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
     }
 
     void Update()
@@ -61,7 +63,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.K))
         {
-            AudioManager.instance.Play("GravityReverse");
+            myAudioManager.Play("GravityReverse");
             myGravityScaler *= -1;
             transform.Rotate(180, 0, 0);
             isGrounded = false;
