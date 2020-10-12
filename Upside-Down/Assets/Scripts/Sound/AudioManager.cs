@@ -16,13 +16,9 @@ public class AudioManager : MonoBehaviour
 
 	public AudioMixerGroup mixerGroup;
 
-	public Sound[] sounds;
-	private ArrayList ambienceSounds = new ArrayList();
-
-	public int maxTimeBetweenAmbientSounds;
-	public int minTimeBetweenAmbientSounds;
-
-	private bool playAmbienceSounds = true;
+	public SoundGroup[] triggeredSounds;
+	public SoundGroup[] constantlyPlayingSounds;
+	public SoundGroup[] randomlyPlayedSounds;
 
 	void Awake()
 	{
@@ -36,50 +32,96 @@ public class AudioManager : MonoBehaviour
 			DontDestroyOnLoad(gameObject);
 		}
 
-		foreach (Sound s in sounds)
-		{
-			s.source = gameObject.AddComponent<AudioSource>() as AudioSource;
-			s.source.clip = s.clip;
-			s.source.loop = s.loop;
-			s.pitch = 1f;
-			s.source.outputAudioMixerGroup = mixerGroup;
-			if (s.tag == "ambience") {
-				ambienceSounds.Add(s.name);
-			}
-
-			if (s.loop) {
-				s.source.volume = s.volume;
-				s.source.Play();
-			}
+		foreach (SoundGroup soundGroup in constantlyPlayingSounds) {
+			soundGroup.source = gameObject.AddComponent<AudioSource>() as AudioSource;
+			StartCoroutine(PlayLoopingSoundGroup(soundGroup));
 		}
 
-		StartCoroutine(RandomlyPlayAmbienceSounds());
+		foreach (SoundGroup soundGroup in randomlyPlayedSounds) {
+			soundGroup.source = gameObject.AddComponent<AudioSource>() as AudioSource;
+			StartCoroutine(PlayRandomlyPlayedSoundGroup(soundGroup));
+		}
+
+		foreach (SoundGroup soundGroup in triggeredSounds) {
+			soundGroup.source = gameObject.AddComponent<AudioSource>() as AudioSource;
+		}
+
 	}
 
-	IEnumerator RandomlyPlayAmbienceSounds() 
-	{
-		while (playAmbienceSounds) {
-			int randomTime = UnityEngine.Random.Range(minTimeBetweenAmbientSounds, maxTimeBetweenAmbientSounds);
-			int randomIndex = UnityEngine.Random.Range(0, ambienceSounds.Count);
+	IEnumerator PlayRandomlyPlayedSoundGroup(SoundGroup soundGroup) {
+		while (soundGroup.active) {
+
+			int randomIndex = UnityEngine.Random.Range(0, soundGroup.sounds.Length);
+			Sound s = soundGroup.sounds[randomIndex];
+
+			soundGroup.source.clip = s.clip;
+			soundGroup.source.volume = soundGroup.volume * s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
+			soundGroup.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
+
+			float randomTime = UnityEngine.Random.Range(soundGroup.minTimeBetweenSounds, soundGroup.maxTimeBetweenSounds);
+			soundGroup.source.Play();
+			Debug.Log(randomTime);
 			yield return new WaitForSeconds(randomTime);
-			// Debug.Log(ambienceSounds[randomIndex]);
-			Play((string) ambienceSounds[randomIndex]);
+
 		}
+	}	
+
+	IEnumerator PlayLoopingSoundGroup(SoundGroup soundGroup) 
+	{
+		while (soundGroup.active) {
+			
+			int randomIndex = UnityEngine.Random.Range(0, soundGroup.sounds.Length);
+			Sound s = soundGroup.sounds[randomIndex];
+
+			soundGroup.source.clip = s.clip;
+			soundGroup.source.volume = soundGroup.volume * s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
+			soundGroup.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
+
+			soundGroup.source.Play();
+
+			yield return new WaitWhile(() => soundGroup.source.isPlaying);
+		}
+	}
+
+	public void StartLoopingSoundGroup(string soundGroup) {
+		SoundGroup sg = Array.Find(constantlyPlayingSounds, item => item.name == soundGroup);
+		Debug.Log(soundGroup + "start");
+		sg.source.mute = !sg.source.mute;
+	}
+
+	public void StopLoopingSoundGroup(string soundGroup) {
+		SoundGroup sg = Array.Find(constantlyPlayingSounds, item => item.name == soundGroup);
+		Debug.Log(soundGroup + "stop");
+		sg.source.mute = !sg.source.mute;
+	}
+
+	public void StartRandomlyPlayedSoundGroup(string soundGroup) {
+		SoundGroup sg = Array.Find(randomlyPlayedSounds, item => item.name == soundGroup);
+		sg.source.mute = !sg.source.mute;
+	}
+
+	public void StopRandomlyPlayedSoundGroup(string soundGroup) {
+		SoundGroup sg = Array.Find(randomlyPlayedSounds, item => item.name == soundGroup);
+		sg.source.mute = !sg.source.mute;
 	}
 
 	public void Play(string sound)
 	{
-		Sound s = Array.Find(sounds, item => item.name == sound);
-		if (s == null)
+		SoundGroup soundGroup = Array.Find(triggeredSounds, item => item.name == sound);
+		if (soundGroup == null)
 		{
 			Debug.LogWarning("Sound: " + name + " not found!");
 			return;
 		}
 
-		s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
-		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
-		Debug.Log(sound);
-		s.source.Play();
+		int randomIndex = UnityEngine.Random.Range(0, soundGroup.sounds.Length);
+		Sound s = soundGroup.sounds[randomIndex];
+
+		soundGroup.source.clip = s.clip;
+		soundGroup.source.volume = soundGroup.volume * s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
+		soundGroup.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
+
+		soundGroup.source.Play();
 
 	}
 
