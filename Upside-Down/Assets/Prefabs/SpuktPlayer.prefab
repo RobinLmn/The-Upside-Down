@@ -684,6 +684,7 @@ GameObject:
   - component: {fileID: 183992076010461089}
   - component: {fileID: 183992076010461094}
   - component: {fileID: 183992076010461095}
+  - component: {fileID: 32877648}
   m_Layer: 9
   m_Name: SpuktPlayer
   m_TagString: Player
@@ -949,3 +950,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushPower: 1
   upward: 0.1
+--- !u!114 &32877648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183992076010461092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4658d3534cffa477ba91905d49dfc485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHiding: 0
+  player: {fileID: 183992076010461092}
+  playerController: {fileID: 183992076010461091}

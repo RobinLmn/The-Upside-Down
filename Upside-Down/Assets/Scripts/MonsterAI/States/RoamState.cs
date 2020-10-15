@@ -29,16 +29,18 @@ public class RoamState : State
     {
         // Monster moves towards the player. 
         /** TODO : Add randomization to roaming? Right now, the monster just searches slower. Add navmesh agent for pathfinding? **/
-		myMonster.monsterRb.velocity = myMonster.monsterObject.monsterSpeedInRoam * myMonster.monsterObject.GetVectorToPlayer();
+		//Vector3 tempVel = Vector3.Lerp(myMonster.monsterRb.velocity, myMonster.monsterObject.monsterSpeedInRoam * myMonster.monsterObject.GetVectorToPlayer(), 0.5f);
+  //      tempVel.y = 0f;
+  //      myMonster.monsterRb.velocity = tempVel;
 
-		// Monster is roaming around the map
-		/** TODO : Feedback **/
-		// Checks if player is too slow
-		bool playerIsTooSlow = myPlayer.GetCurrentSpeed() <= myMinSpeed.mySpeed;
+        // Monster is roaming around the map
+        /** TODO : Feedback **/
+        // Checks if player is too slow
+        bool playerIsTooSlow = PlayerManager.instance.GetCurrentSpeed() <= myMinSpeed.mySpeed;
         myPlayerIsTooSlow = Timer(myMinSpeed.myTimeLimit, playerIsTooSlow);
 
         // Checks if player is too fast / too loud
-        bool playerIsTooFast = myPlayer.GetCurrentSpeed() >= myMaxSpeed.mySpeed;
+        bool playerIsTooFast = PlayerManager.instance.GetCurrentSpeed() >= myMaxSpeed.mySpeed;
         myPlayerIsTooFast = Timer2(myMaxSpeed.myTimeLimit, playerIsTooFast);
 
         return base.Do();

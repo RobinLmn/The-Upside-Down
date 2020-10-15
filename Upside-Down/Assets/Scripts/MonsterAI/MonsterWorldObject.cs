@@ -50,6 +50,6 @@ public class MonsterWorldObject : MonoBehaviour
 
     public Vector3 GetVectorToPlayer()
     {
-        return this.transform.position - myPlayer.transform.position;
+        return (myPlayer.transform.position - this.transform.position).normalized;
 	}
 }

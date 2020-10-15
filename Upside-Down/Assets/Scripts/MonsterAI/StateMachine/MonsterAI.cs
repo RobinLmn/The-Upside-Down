@@ -18,6 +18,11 @@ public class MonsterAI : StateMachine
 
         myState = allStates[typeof(RoamState)]; // Starts in Roam state
     }
+
+    public void SetSpeedZero()
+    {
+        monsterRb.velocity = new Vector3(0f, 0f, 0f);
+    }
 }
 
 public struct SpeedCheck

@@ -60,7 +60,7 @@ public class AudioManager : MonoBehaviour
 
 			float randomTime = UnityEngine.Random.Range(soundGroup.minTimeBetweenSounds, soundGroup.maxTimeBetweenSounds);
 			soundGroup.source.Play();
-			Debug.Log(randomTime);
+			//Debug.Log(randomTime);
 			yield return new WaitForSeconds(randomTime);
 
 		}

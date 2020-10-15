@@ -31,11 +31,15 @@ public class SearchState : State
 
     public override IEnumerator Do()
     {
+        Vector3 tempVel = Vector3.Lerp(myMonster.monsterRb.velocity, myMonster.monsterObject.monsterSpeedInSearch * myMonster.monsterObject.GetVectorToPlayer(), 0.1f);
+        tempVel.y = 0f;
+        myMonster.monsterRb.velocity = tempVel;
+
         // Monster searches
         /** TODO : Feedback **/
 
         // Checks if player too slow
-        bool minimPlayerSpeed = myMinSpeed.mySpeed >= myPlayer.GetCurrentSpeed();
+        bool minimPlayerSpeed = myMinSpeed.mySpeed >= PlayerManager.instance.GetCurrentSpeed();
         isPlayerTooSlow = Timer(myMinSpeed.myTimeLimit, minimPlayerSpeed);
 
         // Update cooldown
@@ -49,11 +53,13 @@ public class SearchState : State
         if (isPlayerTooSlow)
         {
             Debug.Log("Transitioning from SearchState to AttackState");
+            myMonster.SetSpeedZero();
             return typeof(AttackState);
         }
         else if (PlayerManager.instance.IsHiding || myCooldownTimer > myCooldown)
         {
             Debug.Log("Transitioning from SearchState to RoamState");
+            myMonster.SetSpeedZero();
             return typeof(RoamState);
         }
         else

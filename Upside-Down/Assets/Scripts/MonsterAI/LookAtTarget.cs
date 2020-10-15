@@ -11,6 +11,6 @@ public class LookAtTarget : MonoBehaviour
     {
         Vector3 relativePos = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(relativePos);
-        transform.rotation = new Quaternion(0f, lookRotation.y, 0f, lookRotation.w);
+        transform.rotation = Quaternion.Lerp(transform.rotation, new Quaternion(0f, lookRotation.y, 0f, lookRotation.w), 0.1f);
     }
 }
