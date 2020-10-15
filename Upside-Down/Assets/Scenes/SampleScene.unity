@@ -1344,8 +1344,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FC: {fileID: 32877645}
-  cameraTurnTime: 0.7
-  gravityFlipTime: 300
+  cameraTurnTime: 1
+  gravityFlipTime: 1
   inverted: 0
   cam: {fileID: 1105189168}
   invCam: {fileID: 1460830927}

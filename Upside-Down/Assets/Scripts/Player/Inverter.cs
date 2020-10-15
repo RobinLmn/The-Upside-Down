@@ -50,12 +50,12 @@ public class Inverter : MonoBehaviour
         inverted = !inverted;
 		//Physics.gravity = -Physics.gravity;
 		FC.sensitivity = -FC.sensitivity;
-		FC.gravity = -FC.gravity;
+		//FC.gravity = -FC.gravity;
 		gft = FC.baseGroundForce;
-		FC.baseGroundForce = -FC.maxGroundForce;
-		FC.maxGroundForce = -gft;
-		FC.gravityCap = -FC.gravityCap;
-		FC.baseFallVelocity = -FC.baseFallVelocity;
+		FC.baseGroundForce = -FC.baseGroundForce;
+		FC.maxGroundForce = -FC.maxGroundForce;
+		//FC.gravityCap = -FC.gravityCap;
+		//FC.baseFallVelocity = -FC.baseFallVelocity;
 		FC.strafeMult = -FC.strafeMult;
 		if (inverted)
         {
@@ -83,25 +83,28 @@ public class Inverter : MonoBehaviour
 	{
 		Vector3 startPhysicsGravity = Physics.gravity;
 		//float startSensitivity = FC.sensitivity;
-		//float startFCGravity = FC.gravity;
-		//float startGravityCap = FC.gravityCap;
+		float startFCGravity = FC.gravity;
+		float startGravityCap = FC.gravityCap;
+
 
 		Vector3 endPhysicsGravity = -Physics.gravity;
 		//float endSensitivity = -FC.sensitivity;
-		//float endFCGravity = -FC.gravity;
-		//float endGravityCap = -FC.gravityCap;
+		float endFCGravity = -FC.gravity;
+		float endGravityCap = -FC.gravityCap;
+		float endFallVelocity = -FC.baseFallVelocity;
 
 		float gravityTimer = 0f;
 
 		while (gravityTimer <= gravityFlipTime)
 		{
 			gravityTimer += Time.fixedDeltaTime;
-			Physics.gravity = Vector3.Lerp(startPhysicsGravity, endPhysicsGravity, (gravityTimer) / gravityFlipTime);
+			Physics.gravity = Vector3.Lerp(Vector3.zero, endPhysicsGravity, (gravityTimer) / gravityFlipTime);
 			//FC.sensitivity = Mathf.Lerp(startSensitivity, endSensitivity, (gravityTimer) / gravityFlipTime);
-			//FC.gravityCap = Mathf.Lerp(startGravityCap, endGravityCap, (gravityTimer) / gravityFlipTime);
-			//FC.gravity = Mathf.Lerp(startFCGravity, endFCGravity, (gravityTimer) / gravityFlipTime);
+			FC.gravityCap = Mathf.Lerp(0, endGravityCap, (gravityTimer) / gravityFlipTime);
+			FC.gravity = Mathf.Lerp(0, endFCGravity, (gravityTimer) / gravityFlipTime);
+			FC.baseFallVelocity = Mathf.Lerp(0, endFallVelocity, (gravityTimer) / gravityFlipTime);
 
-			Debug.Log(Physics.gravity);
+            //Debug.Log(Physics.gravity);
 
 			yield return new WaitForFixedUpdate();
 		}
