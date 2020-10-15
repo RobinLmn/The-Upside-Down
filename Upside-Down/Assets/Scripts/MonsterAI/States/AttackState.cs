@@ -15,6 +15,7 @@ public class AttackState : State
 
     public override void StartState()
     {
+        myMonsterAi.SetSpeedZero();
         Debug.Log("Player Dies");
         isGameOver = true;
     }

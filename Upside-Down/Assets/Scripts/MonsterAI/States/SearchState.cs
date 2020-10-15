@@ -53,13 +53,11 @@ public class SearchState : State
         if (isPlayerTooSlow || IsPlayerInAttackRange())
         {
             Debug.Log("Transitioning from SearchState to AttackState");
-            myMonsterAi.SetSpeedZero();
             return typeof(AttackState);
         }
         else if (PlayerManager.instance.IsHiding || myCooldownTimer > myCooldown)
         {
             Debug.Log("Transitioning from SearchState to RoamState");
-            myMonsterAi.SetSpeedZero();
             return typeof(RoamState);
         }
         else

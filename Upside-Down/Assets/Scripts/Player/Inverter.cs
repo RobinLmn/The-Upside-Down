@@ -6,7 +6,8 @@ using TheFirstPerson;
 public class Inverter : MonoBehaviour
 {
     public FPSController FC;
-    public float turnTime;
+    public float cameraTurnTime;
+    public float gravityFlipTime;
     private float startTime;
     private float endTime = -1;
     private Vector3 goal;
@@ -24,7 +25,6 @@ public class Inverter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FC = this.GetComponent<FPSController>();
         if (inverted)
             Invert();
         cam.transform.localPosition = normalCam.transform.localPosition;
@@ -39,8 +39,8 @@ public class Inverter : MonoBehaviour
     {
         if (Time.time < endTime+0.1)
         {
-            cam.transform.localPosition = Vector3.Lerp(start, goal, (Time.time - startTime) / turnTime);
-            cam.transform.localRotation = Quaternion.Lerp(rotateStart, rotateGoal, (Time.time - startTime) / turnTime);
+            cam.transform.localPosition = Vector3.Lerp(start, goal, (Time.time - startTime) / cameraTurnTime);
+            cam.transform.localRotation = Quaternion.Lerp(rotateStart, rotateGoal, (Time.time - startTime) / cameraTurnTime);
         }
     }
 
@@ -48,16 +48,16 @@ public class Inverter : MonoBehaviour
     public void Invert()
     {
         inverted = !inverted;
-        Physics.gravity = -Physics.gravity;
-        FC.sensitivity = -FC.sensitivity;
-        FC.gravity = -FC.gravity;
-        gft = FC.baseGroundForce;
-        FC.baseGroundForce = -FC.maxGroundForce;
-        FC.maxGroundForce = -gft;
-        FC.gravityCap = -FC.gravityCap;
-        FC.baseFallVelocity = -FC.baseFallVelocity;
-        FC.strafeMult = -FC.strafeMult;
-        if (inverted)
+		//Physics.gravity = -Physics.gravity;
+		FC.sensitivity = -FC.sensitivity;
+		FC.gravity = -FC.gravity;
+		gft = FC.baseGroundForce;
+		FC.baseGroundForce = -FC.maxGroundForce;
+		FC.maxGroundForce = -gft;
+		FC.gravityCap = -FC.gravityCap;
+		FC.baseFallVelocity = -FC.baseFallVelocity;
+		FC.strafeMult = -FC.strafeMult;
+		if (inverted)
         {
             start = cam.transform.localPosition;
             goal = invCam.transform.localPosition;
@@ -74,6 +74,36 @@ public class Inverter : MonoBehaviour
             feet.localPosition = feetN.localPosition;
         }
         startTime = Time.time;
-        endTime = Time.time + turnTime;
-    }
+        endTime = Time.time + cameraTurnTime;
+
+		StartCoroutine(LerpGravity());
+	}
+
+	private IEnumerator LerpGravity()
+	{
+		Vector3 startPhysicsGravity = Physics.gravity;
+		//float startSensitivity = FC.sensitivity;
+		//float startFCGravity = FC.gravity;
+		//float startGravityCap = FC.gravityCap;
+
+		Vector3 endPhysicsGravity = -Physics.gravity;
+		//float endSensitivity = -FC.sensitivity;
+		//float endFCGravity = -FC.gravity;
+		//float endGravityCap = -FC.gravityCap;
+
+		float gravityTimer = 0f;
+
+		while (gravityTimer <= gravityFlipTime)
+		{
+			gravityTimer += Time.fixedDeltaTime;
+			Physics.gravity = Vector3.Lerp(startPhysicsGravity, endPhysicsGravity, (gravityTimer) / gravityFlipTime);
+			//FC.sensitivity = Mathf.Lerp(startSensitivity, endSensitivity, (gravityTimer) / gravityFlipTime);
+			//FC.gravityCap = Mathf.Lerp(startGravityCap, endGravityCap, (gravityTimer) / gravityFlipTime);
+			//FC.gravity = Mathf.Lerp(startFCGravity, endFCGravity, (gravityTimer) / gravityFlipTime);
+
+			Debug.Log(Physics.gravity);
+
+			yield return new WaitForFixedUpdate();
+		}
+	}
 }

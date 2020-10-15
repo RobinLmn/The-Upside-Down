@@ -24,8 +24,13 @@ public class RoamState : State
         myMaxSpeed = maxSpeed;
     }
 
-    // Runs in Update
-    public override IEnumerator Do()
+	public override void StartState()
+	{
+        myMonsterAi.SetSpeedZero();
+    }
+
+	// Runs in Update
+	public override IEnumerator Do()
     {
         // Monster moves towards the player. 
         /** TODO : Add randomization to roaming? Right now, the monster just searches slower. Add navmesh agent for pathfinding? **/
