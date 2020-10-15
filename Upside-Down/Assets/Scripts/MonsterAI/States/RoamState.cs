@@ -6,7 +6,7 @@ using TheFirstPerson;
 
 public class RoamState : State
 {
-    MonsterAI myMonster;
+    MonsterAI myMonsterAi;
     FPSController myPlayer;
 
     bool myPlayerIsTooSlow = false;
@@ -18,7 +18,7 @@ public class RoamState : State
     public RoamState(MonsterAI aMonster, FPSController aPlayer, SpeedCheck minSpeed, SpeedCheck maxSpeed)
     {
         myPlayer = aPlayer;
-        myMonster = aMonster;
+        myMonsterAi = aMonster;
 
         myMinSpeed = minSpeed;
         myMaxSpeed = maxSpeed;

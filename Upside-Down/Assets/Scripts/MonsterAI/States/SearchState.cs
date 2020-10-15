@@ -5,7 +5,7 @@ using TheFirstPerson;
 
 public class SearchState : State
 {
-    MonsterAI myMonster;
+    MonsterAI myMonsterAi;
     FPSController myPlayer;
 
     bool isPlayerTooSlow;
@@ -18,7 +18,7 @@ public class SearchState : State
     public SearchState(MonsterAI aMonster, FPSController aPlayer, SpeedCheck minSpeed, float aCooldwon)
     {
         myPlayer = aPlayer;
-        myMonster = aMonster;
+        myMonsterAi = aMonster;
 
         myCooldown = aCooldwon;
         myMinSpeed = minSpeed;
@@ -31,9 +31,9 @@ public class SearchState : State
 
     public override IEnumerator Do()
     {
-        Vector3 tempVel = Vector3.Lerp(myMonster.monsterRb.velocity, myMonster.monsterObject.monsterSpeedInSearch * myMonster.monsterObject.GetVectorToPlayer(), 0.1f);
+        Vector3 tempVel = Vector3.Lerp(myMonsterAi.monsterRb.velocity, myMonsterAi.monsterObject.monsterSpeedInSearch * myMonsterAi.monsterObject.GetVectorToPlayer(), 0.1f);
         tempVel.y = 0f;
-        myMonster.monsterRb.velocity = tempVel;
+        myMonsterAi.monsterRb.velocity = tempVel;
 
         // Monster searches
         /** TODO : Feedback **/
@@ -50,21 +50,29 @@ public class SearchState : State
 
     public override Type GetTransition()
     {
-        if (isPlayerTooSlow)
+        if (isPlayerTooSlow || IsPlayerInAttackRange())
         {
             Debug.Log("Transitioning from SearchState to AttackState");
-            myMonster.SetSpeedZero();
+            myMonsterAi.SetSpeedZero();
             return typeof(AttackState);
         }
         else if (PlayerManager.instance.IsHiding || myCooldownTimer > myCooldown)
         {
             Debug.Log("Transitioning from SearchState to RoamState");
-            myMonster.SetSpeedZero();
+            myMonsterAi.SetSpeedZero();
             return typeof(RoamState);
         }
         else
         {
             return typeof(SearchState);
         }
+    }
+
+
+    private bool IsPlayerInAttackRange()
+    {
+        if ((myPlayer.transform.position - myMonsterAi.monsterObject.transform.position).magnitude < myMonsterAi.monsterObject.monsterAttackRange)
+            return true;
+        return false;
     }
 }

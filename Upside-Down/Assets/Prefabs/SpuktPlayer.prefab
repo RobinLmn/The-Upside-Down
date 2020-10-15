@@ -29,7 +29,7 @@ Transform:
   m_Children:
   - {fileID: 183992075169411506}
   - {fileID: 183992075959669952}
-  m_Father: {fileID: 183992076010461101}
+  m_Father: {fileID: 2954893999226220461}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &183992074656986747
@@ -59,7 +59,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 183992076010461101}
+  m_Father: {fileID: 2954893999226220461}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &183992074757556415
@@ -89,7 +89,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 183992076010461101}
+  m_Father: {fileID: 2954893999226220461}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &183992075157428156
@@ -259,7 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 183992075227517646}
   m_Layer: 9
-  m_Name: GameObject
+  m_Name: Camera Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -280,7 +280,7 @@ Transform:
   - {fileID: 183992075537934111}
   - {fileID: 183992075266147846}
   m_Father: {fileID: 183992076010461101}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &183992075266147847
 GameObject:
@@ -342,7 +342,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 183992076010461101}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &183992075535585464
 AudioSource:
@@ -703,11 +703,9 @@ Transform:
   m_LocalPosition: {x: -1.4110818, y: 0, z: 2.7175756}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 183992074656986746}
-  - {fileID: 183992074757556414}
-  - {fileID: 183992074175999680}
   - {fileID: 183992075535585467}
   - {fileID: 183992075227517646}
+  - {fileID: 2954893999226220461}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -964,4 +962,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHiding: 0
   player: {fileID: 183992076010461092}
-  playerController: {fileID: 183992076010461091}
+  playerCharController: {fileID: 183992076010461090}
+--- !u!1 &6573770539043628850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2954893999226220461}
+  m_Layer: 9
+  m_Name: FeetHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2954893999226220461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6573770539043628850}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 183992074656986746}
+  - {fileID: 183992074757556414}
+  - {fileID: 183992074175999680}
+  m_Father: {fileID: 183992076010461101}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

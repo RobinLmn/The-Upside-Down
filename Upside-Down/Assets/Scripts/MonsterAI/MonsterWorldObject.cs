@@ -11,6 +11,7 @@ public class MonsterWorldObject : MonoBehaviour
     [SerializeField] public float monsterSpeedInRoam;
     [SerializeField] public float monsterSpeedInSearch;
     [SerializeField] public float monsterSpeedInAttack;
+    [SerializeField] public float monsterAttackRange;
 
     [SerializeField] private float minSpeedInRoam;
     [SerializeField] private float minSpeedAggroTimeInRoam;
