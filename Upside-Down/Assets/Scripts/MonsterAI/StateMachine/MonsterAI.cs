@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using TheFirstPerson;
 
 public class MonsterAI : StateMachine
 {
 
-    public MonsterAI(PlayerController aPlayer, SpeedCheck minSpeed_Roam, SpeedCheck maxSpeed_Roam, SpeedCheck minSpeed_Search, float maxSearchTime)
+    public MonsterAI(FPSController aPlayer, SpeedCheck minSpeed_Roam, SpeedCheck maxSpeed_Roam, SpeedCheck minSpeed_Search, float maxSearchTime)
     {
         AddState(typeof(SearchState), new SearchState(this, aPlayer, minSpeed_Search, maxSearchTime));
         AddState(typeof(AttackState), new AttackState(this));

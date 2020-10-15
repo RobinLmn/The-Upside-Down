@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System;
 using UnityEngine;
+using TheFirstPerson;
 
 public class SearchState : State
 {
     MonsterAI myMonster;
-    PlayerController myPlayer;
+    FPSController myPlayer;
 
     bool isPlayerTooSlow;
 
@@ -14,7 +15,7 @@ public class SearchState : State
 
     SpeedCheck myMinSpeed;
 
-    public SearchState(MonsterAI aMonster, PlayerController aPlayer, SpeedCheck minSpeed, float aCooldwon)
+    public SearchState(MonsterAI aMonster, FPSController aPlayer, SpeedCheck minSpeed, float aCooldwon)
     {
         myPlayer = aPlayer;
         myMonster = aMonster;
