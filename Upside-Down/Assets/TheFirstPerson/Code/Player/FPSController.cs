@@ -171,6 +171,11 @@ namespace TheFirstPerson
 
         TFPInfo controllerInfo;
 
+        public float GetCurrentSpeed()
+        {
+            return currentMoveSpeed;
+        }
+
         void Start()
         {
             controller = GetComponent<CharacterController>();

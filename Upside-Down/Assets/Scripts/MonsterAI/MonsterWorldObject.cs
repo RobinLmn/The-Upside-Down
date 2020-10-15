@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using TheFirstPerson;
 
 public class MonsterWorldObject : MonoBehaviour
 {
     MonsterAI myMonsterAI;
-    [SerializeField] private PlayerController myPlayer;
+    [SerializeField] private FPSController myPlayer;
 
     [SerializeField] private float minSpeedInRoam;
     [SerializeField] private float minTimeSpeedInRoam;

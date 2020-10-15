@@ -2,11 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TheFirstPerson;
 
 public class RoamState : State
 {
     MonsterAI myMonster;
-    PlayerController myPlayer;
+    FPSController myPlayer;
 
     bool myPlayerIsTooSlow = false;
     bool myPlayerIsTooFast = false;
@@ -14,7 +15,7 @@ public class RoamState : State
     SpeedCheck myMinSpeed;
     SpeedCheck myMaxSpeed;
 
-    public RoamState(MonsterAI aMonster, PlayerController aPlayer, SpeedCheck minSpeed, SpeedCheck maxSpeed)
+    public RoamState(MonsterAI aMonster, FPSController aPlayer, SpeedCheck minSpeed, SpeedCheck maxSpeed)
     {
         myPlayer = aPlayer;
         myMonster = aMonster;
@@ -28,7 +29,6 @@ public class RoamState : State
     {
         // Monster is roaming around the map
         /** TODO : Feedback **/
-
         // Checks if player is too slow
         bool playerIsTooSlow = myPlayer.GetCurrentSpeed() <= myMinSpeed.mySpeed;
         myPlayerIsTooSlow = Timer(myMinSpeed.myTimeLimit, playerIsTooSlow);
