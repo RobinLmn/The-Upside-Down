@@ -79,6 +79,7 @@ public class Inverter : MonoBehaviour
 		StartCoroutine(LerpGravity());
 	}
 
+    // NOTE: Player currently falls much faster in one direction than in the other. Ignoring for now, might not be noticeable
 	private IEnumerator LerpGravity()
 	{
 		Vector3 startPhysicsGravity = Physics.gravity;
