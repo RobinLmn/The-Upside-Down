@@ -2,32 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TheFirstPerson;
+using Cinemachine;
 
 public class Inverter : MonoBehaviour
 {
     public FPSController FC;
-    public float cameraTurnTime;
+    public Hider hider;
+
     public float gravityFlipTime;
-    private float startTime;
-    private float endTime = -1;
-    private Vector3 goal;
-    private Vector3 start;
-    [SerializeField] bool inverted;
-    public GameObject cam;
-    public Transform invCam;
-    public Transform normalCam;
+
+    [SerializeField]public bool inverted = false;
+
     public Transform feet;
     public Transform feetN;
     public Transform feetI;
-    Quaternion rotateStart;
-    Quaternion rotateGoal;
+
+    public CinemachineVirtualCamera normalVCamera;
+    public CinemachineVirtualCamera invertedVCamera;
+
+    public delegate void OnInvert();
+    public static event OnInvert onInvert;
+
     float gft;
+
     // Start is called before the first frame update
     void Start()
     {
         if (inverted)
             Invert();
-        cam.transform.localPosition = normalCam.transform.localPosition;
     }
 
     private void Update()
@@ -35,46 +37,28 @@ public class Inverter : MonoBehaviour
         if (Input.GetKeyDown("e"))
             Invert();
     }
-    private void FixedUpdate()
-    {
-        if (Time.time < endTime+0.1)
-        {
-            cam.transform.localPosition = Vector3.Lerp(start, goal, (Time.time - startTime) / cameraTurnTime);
-            cam.transform.localRotation = Quaternion.Lerp(rotateStart, rotateGoal, (Time.time - startTime) / cameraTurnTime);
-        }
-    }
 
     // Update is called once per frame
     public void Invert()
     {
-        inverted = !inverted;
-		//Physics.gravity = -Physics.gravity;
+		onInvert();
+
+		inverted = !inverted;
 		FC.sensitivity = -FC.sensitivity;
-		//FC.gravity = -FC.gravity;
 		gft = FC.baseGroundForce;
 		FC.baseGroundForce = -FC.baseGroundForce;
 		FC.maxGroundForce = -FC.maxGroundForce;
-		//FC.gravityCap = -FC.gravityCap;
-		//FC.baseFallVelocity = -FC.baseFallVelocity;
+
 		FC.strafeMult = -FC.strafeMult;
-		if (inverted)
-        {
-            start = cam.transform.localPosition;
-            goal = invCam.transform.localPosition;
-            rotateStart = cam.transform.localRotation;
-            rotateGoal = invCam.transform.localRotation;
+        if (inverted)
             feet.localPosition = feetI.localPosition;
-        }
         else
-        {
-            goal = normalCam.transform.localPosition;
-            start = cam.transform.localPosition;
-            rotateGoal = normalCam.transform.localRotation;
-            rotateStart = cam.transform.localRotation;
             feet.localPosition = feetN.localPosition;
-        }
-        startTime = Time.time;
-        endTime = Time.time + cameraTurnTime;
+
+        if (inverted && !hider.isHiding) // spaghetti code please ignore for now
+            invertedVCamera.enabled = true;
+        else if (!inverted && !hider.isHiding)
+			invertedVCamera.enabled = false;
 
 		StartCoroutine(LerpGravity());
 	}
@@ -82,14 +66,7 @@ public class Inverter : MonoBehaviour
     // NOTE: Player currently falls much faster in one direction than in the other. Ignoring for now, might not be noticeable
 	private IEnumerator LerpGravity()
 	{
-		Vector3 startPhysicsGravity = Physics.gravity;
-		//float startSensitivity = FC.sensitivity;
-		float startFCGravity = FC.gravity;
-		float startGravityCap = FC.gravityCap;
-
-
 		Vector3 endPhysicsGravity = -Physics.gravity;
-		//float endSensitivity = -FC.sensitivity;
 		float endFCGravity = -FC.gravity;
 		float endGravityCap = -FC.gravityCap;
 		float endFallVelocity = -FC.baseFallVelocity;
@@ -100,12 +77,9 @@ public class Inverter : MonoBehaviour
 		{
 			gravityTimer += Time.fixedDeltaTime;
 			Physics.gravity = Vector3.Lerp(Vector3.zero, endPhysicsGravity, (gravityTimer) / gravityFlipTime);
-			//FC.sensitivity = Mathf.Lerp(startSensitivity, endSensitivity, (gravityTimer) / gravityFlipTime);
 			FC.gravityCap = Mathf.Lerp(0, endGravityCap, (gravityTimer) / gravityFlipTime);
 			FC.gravity = Mathf.Lerp(0, endFCGravity, (gravityTimer) / gravityFlipTime);
 			FC.baseFallVelocity = Mathf.Lerp(0, endFallVelocity, (gravityTimer) / gravityFlipTime);
-
-            //Debug.Log(Physics.gravity);
 
 			yield return new WaitForFixedUpdate();
 		}

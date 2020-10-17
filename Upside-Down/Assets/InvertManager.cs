@@ -54,4 +54,9 @@ public class InvertManager : MonoBehaviour
 			//inverter.Invert();
 		}
     }
+
+    public bool IsInverted()
+    {
+       return inverter.inverted;
+    }
 }
