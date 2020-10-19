@@ -17,6 +17,7 @@ public class AttackState : State
     {
         myMonsterAi.SetSpeedZero();
         Debug.Log("Player Dies");
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("MonsterEating");
         isGameOver = true;
     }
 

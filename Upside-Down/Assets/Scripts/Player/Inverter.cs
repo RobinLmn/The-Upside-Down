@@ -5,6 +5,7 @@ using TheFirstPerson;
 
 public class Inverter : MonoBehaviour
 {
+    public AudioManager audioManager;
     public FPSController FC;
     public float cameraTurnTime;
     public float gravityFlipTime;
@@ -28,6 +29,7 @@ public class Inverter : MonoBehaviour
         if (inverted)
             Invert();
         cam.transform.localPosition = normalCam.transform.localPosition;
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     private void Update()
@@ -75,7 +77,7 @@ public class Inverter : MonoBehaviour
         }
         startTime = Time.time;
         endTime = Time.time + cameraTurnTime;
-
+        audioManager.Play("GravityReverse");
 		StartCoroutine(LerpGravity());
 	}
 
