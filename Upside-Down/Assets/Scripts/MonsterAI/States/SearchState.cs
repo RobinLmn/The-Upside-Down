@@ -7,7 +7,7 @@ public class SearchState : State
 {
     MonsterAI myMonsterAi;
     FPSController myPlayer;
-
+    ParticleSystem searchStateFog;
     bool isPlayerTooSlow;
 
     float myCooldownTimer = 0;
@@ -27,6 +27,8 @@ public class SearchState : State
     public override void StartState()
     {
         myCooldownTimer = 0;
+        searchStateFog = GameObject.Find("SearchStateFog").GetComponent<ParticleSystem>();
+        searchStateFog.Play();
     }
 
     public override IEnumerator Do()
