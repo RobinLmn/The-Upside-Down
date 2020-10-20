@@ -35,13 +35,16 @@ public class Inverter : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown("e"))
+        {
+            Debug.Log("invert");
             Invert();
+        }
     }
 
     // Update is called once per frame
     public void Invert()
     {
-		onInvert();
+		//onInvert();
 
 		inverted = !inverted;
 		FC.sensitivity = -FC.sensitivity;

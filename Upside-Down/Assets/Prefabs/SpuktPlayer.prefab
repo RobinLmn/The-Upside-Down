@@ -48,7 +48,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 0
+  m_Priority: 100
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -703,7 +703,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
+  m_CustomBlends: {fileID: 11400000, guid: bdfd0209ce3f272419a2a43825ebe28e, type: 2}
   m_CameraCutEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1088,7 +1088,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183992076010461092}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 626ac49d75b7f10439fbd77016576c78, type: 3}
   m_Name: 
@@ -1122,7 +1122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3ce93162df70c40a315272d4719aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainVCamera: {fileID: 609617198}
+  mainNormalVCamera: {fileID: 609617198}
+  mainInvertedVCamera: {fileID: 4236358594064797810}
+  invertManager: {fileID: 0}
   isHiding: 0
 --- !u!1 &1717220770656754251
 GameObject:
@@ -1266,7 +1268,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 1
+  m_Priority: 101
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
