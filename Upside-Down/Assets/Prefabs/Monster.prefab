@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8713225386872364468}
   - component: {fileID: 8713225386872364471}
   - component: {fileID: 8713225386872364425}
-  - component: {fileID: 8713225386872364466}
   - component: {fileID: 8713225386872364424}
+  - component: {fileID: 8374995101498892758}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
@@ -130,30 +130,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8713225386872364466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8713225386872364467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4294e06a2b07f48b8af28209633fb29e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myPlayer: {fileID: 0}
-  monsterSpeedInRoam: 2
-  monsterSpeedInSearch: 4
-  monsterSpeedInAttack: 4
-  monsterAttackRange: 2
-  minSpeedInRoam: 3.5
-  minSpeedAggroTimeInRoam: 2
-  maxSpeedInRoam: 5.5
-  maxSpeedAggroTimeInRoam: 2
-  minSpeedInSearch: 100
-  minSpeedAggroTimeInSearch: 5
-  maxSearchTime: 10
 --- !u!95 &8713225386872364424
 Animator:
   serializedVersion: 3
@@ -173,3 +149,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8374995101498892758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8713225386872364467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 750a0a744926f4645acd684091ac3a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPlayer: {fileID: 0}
+  roamAggroRange: 4
+  roamSpeed: 2
+  chaseSpeed: 2
+  chaseAggroRange: 5
+  chaseDuration: 3
+  chaseCooldown: 5
+  attackRange: 2

@@ -2,21 +2,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TheFirstPerson;
 
 public class AttackState : State
 {
-    MonsterAI myMonsterAi;
-    bool isGameOver = false;
+    MonsterScript _monsterScript;
+    FPSController _player;
 
-    public AttackState(MonsterAI aMonster)
+    public bool isGameOver = false;
+
+    public AttackState(MonsterScript monsterScript, FPSController player)
     {
-        myMonsterAi = aMonster;
+        _player = player;
+        _monsterScript = monsterScript;
     }
 
     public override void StartState()
     {
-        myMonsterAi.SetSpeedZero();
+        _monsterScript.SetSpeedZero();
         Debug.Log("Player Dies");
+
+        // Gameover logic should live in a GameManager class. Modify later
         isGameOver = true;
     }
 
@@ -30,7 +36,7 @@ public class AttackState : State
     {
         if (isGameOver)
         {
-            Debug.Log("Transitioning into RoamState");
+            Debug.Log("Transitioning from AttackState into RoamState");
             return typeof(RoamState);
         }
         return typeof(AttackState);

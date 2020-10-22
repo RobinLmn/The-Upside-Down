@@ -8,24 +8,21 @@ public class HidingCamera : MonoBehaviour // Event in Inverter.cs triggers flip 
     public CinemachineVirtualCamera normalVCamera;
     public CinemachineVirtualCamera invertedVCamera;
 
-	// Start is called before the first frame update
-	void OnEnable()
-	{
-		Inverter.onInvert += InvertHidingCamera;
-	}
+	//// Start is called before the first frame update
+	//void OnEnable()
+	//{
+	//	Inverter.onInvert += DisableHidingCamera;
+	//}
 
 
-	void InvertHidingCamera()
-	{
-		if (invertedVCamera.enabled || normalVCamera.enabled) // If one of this hiding spot's cameras is enabled, the player is in this spot.
-		{
-			normalVCamera.enabled = !normalVCamera.enabled;
-			invertedVCamera.enabled = !invertedVCamera.enabled;
-		}
-	}
+	//void DisableHidingCamera() // Disable hiding camera when inverted
+	//{
+	//	normalVCamera.enabled = false;
+	//	invertedVCamera.enabled = false;
+	//}
 
-	void OnDisable()
-	{
-		Inverter.onInvert -= InvertHidingCamera;
-	}
+	//void OnDisable()
+	//{
+	//	Inverter.onInvert -= DisableHidingCamera;
+	//}
 }

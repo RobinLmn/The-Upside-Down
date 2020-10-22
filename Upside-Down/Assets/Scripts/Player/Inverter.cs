@@ -44,7 +44,7 @@ public class Inverter : MonoBehaviour
     // Update is called once per frame
     public void Invert()
     {
-		//onInvert();
+		onInvert();
 
 		inverted = !inverted;
 		FC.sensitivity = -FC.sensitivity;
@@ -58,10 +58,16 @@ public class Inverter : MonoBehaviour
         else
             feet.localPosition = feetN.localPosition;
 
-        if (inverted && !hider.isHiding) // spaghetti code please ignore for now
+        if (inverted) // spaghetti code please ignore for now
+        {
             invertedVCamera.enabled = true;
-        else if (!inverted && !hider.isHiding)
-			invertedVCamera.enabled = false;
+            normalVCamera.enabled = false;
+        }
+        else if (!inverted)
+        {
+            normalVCamera.enabled = true;
+            invertedVCamera.enabled = false;
+        }
 
 		StartCoroutine(LerpGravity());
 	}

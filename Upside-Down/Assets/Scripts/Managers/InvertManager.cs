@@ -12,7 +12,7 @@ public class InvertManager : MonoBehaviour
     private float randAmount = 1f; // Adding randomness to the period
 
     private Inverter inverter;
-    private MonsterWorldObject monsterWorldObject;
+    private MonsterScript monsterScript;
 
     private State curState;
     private float curInvertPeriod;
@@ -21,8 +21,8 @@ public class InvertManager : MonoBehaviour
 	void Start()
     {
         inverter = GetComponent<Inverter>();
-        monsterWorldObject = monster.GetComponent<MonsterWorldObject>();
-        curState = monsterWorldObject.GetMonsterState();
+        monsterScript = monster.GetComponent<MonsterScript>();
+        curState = monsterScript.GetMonsterState();
 
         StartCoroutine(InvertWithPeriod());
     }
@@ -30,7 +30,7 @@ public class InvertManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        curState = monsterWorldObject.GetMonsterState();
+        curState = monsterScript.GetMonsterState();
 
         switch (curState.ToString()) // Not great code, but since we only have 3 states it will do
         {
