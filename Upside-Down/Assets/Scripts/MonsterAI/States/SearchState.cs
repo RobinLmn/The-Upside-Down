@@ -8,6 +8,8 @@ public class SearchState : State
     MonsterAI myMonsterAi;
     FPSController myPlayer;
     ParticleSystem searchStateFog;
+    AudioManager audioManager;
+    
     bool isPlayerTooSlow;
 
     float myCooldownTimer = 0;
@@ -29,6 +31,7 @@ public class SearchState : State
         myCooldownTimer = 0;
         searchStateFog = GameObject.Find("SearchStateFog").GetComponent<ParticleSystem>();
         searchStateFog.Play();
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("MonsterCry");
     }
 
     public override IEnumerator Do()

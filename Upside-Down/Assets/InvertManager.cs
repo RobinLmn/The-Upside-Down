@@ -5,9 +5,11 @@ using UnityEngine;
 public class InvertManager : MonoBehaviour
 {
     public GameObject monster;
-    public const float roamInvertPeriod = 12f;
-    public const float searchInvertPeriod = 1f;
-    public const float attackInvertPeriod = 3f;
+    [SerializeField] private float roamInvertPeriod = 6f;
+    [SerializeField] private float searchInvertPeriod = 1f;
+    [SerializeField] private float attackInvertPeriod = 3f;
+
+    private float randAmount = 1f; // Adding randomness to the period
 
     private Inverter inverter;
     private MonsterWorldObject monsterWorldObject;
@@ -48,8 +50,8 @@ public class InvertManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(curInvertPeriod);
-            //inverter.Invert();
-        }
+            yield return new WaitForSeconds(curInvertPeriod + Random.Range(-randAmount, randAmount));
+			//inverter.Invert();
+		}
     }
 }
