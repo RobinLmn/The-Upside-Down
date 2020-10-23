@@ -818,6 +818,10 @@ PrefabInstance:
       propertyPath: invertManager
       value: 
       objectReference: {fileID: 1342186018}
+    - target: {fileID: 79959091, guid: e97b7cf6b32c07b4da7a7d7ed07abb73, type: 3}
+      propertyPath: inverter
+      value: 
+      objectReference: {fileID: 2057278111}
     - target: {fileID: 183992076010461092, guid: e97b7cf6b32c07b4da7a7d7ed07abb73, type: 3}
       propertyPath: m_Name
       value: SpuktPlayer
@@ -1578,8 +1582,19 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2057278111 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3374971835476648197, guid: a9c3a3527cba5af4497a21febafe37f4, type: 3}
+  m_PrefabInstance: {fileID: 3374971834671334180}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fb162f501cb1834b8bf0271f5b340de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2082898115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1929,6 +1944,18 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 32877645}
+    - target: {fileID: 8374995101498892758, guid: bc5048969d435094dbea60d838c7dabd, type: 3}
+      propertyPath: roamAggroRange
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8374995101498892758, guid: bc5048969d435094dbea60d838c7dabd, type: 3}
+      propertyPath: chaseAggroRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8374995101498892758, guid: bc5048969d435094dbea60d838c7dabd, type: 3}
+      propertyPath: chaseDuration
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8713225386872364466, guid: bc5048969d435094dbea60d838c7dabd, type: 3}
       propertyPath: myPlayer
       value: 
@@ -1967,7 +1994,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8713225386872364470, guid: bc5048969d435094dbea60d838c7dabd, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8713225386872364470, guid: bc5048969d435094dbea60d838c7dabd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
