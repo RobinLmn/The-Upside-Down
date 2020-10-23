@@ -71,13 +71,8 @@ public class Inverter : MonoBehaviour
             normalVCamera.enabled = true;
             invertedVCamera.enabled = false;
         }
-<<<<<<< HEAD
 
-=======
-        startTime = Time.time;
-        endTime = Time.time + cameraTurnTime;
         audioManager.Play("GravityReverse");
->>>>>>> main
 		StartCoroutine(LerpGravity());
 	}
 

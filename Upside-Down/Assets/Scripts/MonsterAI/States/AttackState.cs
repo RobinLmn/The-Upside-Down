@@ -18,18 +18,12 @@ public class AttackState : State
     }
 
     public override void StartState()
-<<<<<<< HEAD
     {
         _monsterScript.SetSpeedZero();
         Debug.Log("Player Dies");
 
         // Gameover logic should live in a GameManager class. Modify later
-=======
-    {
-        myMonsterAi.SetSpeedZero();
-        Debug.Log("Player Dies");
         GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("MonsterEating");
->>>>>>> main
         isGameOver = true;
     }
 
