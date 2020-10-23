@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheFirstPerson;
+using UnityEngine.AI;
 
 public class RoamState : State // Monster is roaming around the map
 {
     MonsterScript _monsterScript;
+    NavMeshAgent _agent;
     FPSController _player;
 
     float roamTimer = 0f;

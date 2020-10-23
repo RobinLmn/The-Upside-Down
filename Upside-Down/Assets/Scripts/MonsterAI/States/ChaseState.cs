@@ -2,6 +2,7 @@
 using System;
 using UnityEngine;
 using TheFirstPerson;
+using UnityEngine.AI;
 
 public class ChaseState : State
 {
@@ -9,6 +10,7 @@ public class ChaseState : State
 
     MonsterScript _monsterScript;
     Rigidbody _monsterRb;
+    NavMeshAgent _agent;
     FPSController _player;
 
     public ChaseState(MonsterScript monsterScript, FPSController player)
@@ -16,6 +18,7 @@ public class ChaseState : State
         _player = player;
         _monsterScript = monsterScript;
         _monsterRb = _monsterScript.GetComponent<Rigidbody>();
+        _agent = _monsterScript.GetComponent<NavMeshAgent>();
     }
 
     public override void StartState()
@@ -26,9 +29,11 @@ public class ChaseState : State
     public override IEnumerator Do()
     {
         // Monster runs towards player
-        Vector3 tempVel = Vector3.Lerp(_monsterRb.velocity, _monsterScript.chaseSpeed * _monsterScript.GetVectorToPlayer(), 0.1f);
-        tempVel.y = 0f;
-        _monsterRb.velocity = tempVel;
+        //Vector3 tempVel = Vector3.Lerp(_monsterRb.velocity, _monsterScript.chaseSpeed * _monsterScript.GetVectorToPlayer(), 0.1f);
+        //tempVel.y = 0f;
+        //_monsterRb.velocity = tempVel;
+
+        MoveTowardsPlayer();
 
         // Update timer
         chaseTimer += Time.deltaTime;
@@ -56,6 +61,10 @@ public class ChaseState : State
         }
     }
 
+    private void MoveTowardsPlayer()
+    {
+        _agent.SetDestination(_player.transform.position);
+    }
 
     private bool IsPlayerInAttackRange() // If player is in attack range, return true
     {

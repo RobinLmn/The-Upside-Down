@@ -8,7 +8,7 @@ public class MonsterScript : MonoBehaviour
     MonsterAI monsterAI;
     Rigidbody monsterRb;
 
-    [SerializeField] private FPSController myPlayer;
+    [SerializeField] private FPSController player;
 
     [SerializeField] public float roamAggroRange;
     [SerializeField] public float roamSpeed;
@@ -23,7 +23,7 @@ public class MonsterScript : MonoBehaviour
 
     private void Awake()
     {
-        monsterAI = new MonsterAI(this, myPlayer);
+        monsterAI = new MonsterAI(this, player);
         monsterRb = GetComponent<Rigidbody>();
     }
 
@@ -44,7 +44,7 @@ public class MonsterScript : MonoBehaviour
 
     public Vector3 GetVectorToPlayer()
     {
-        return (myPlayer.transform.position - this.transform.position).normalized;
+        return (player.transform.position - this.transform.position).normalized;
 	}
 
     void DebugState()
