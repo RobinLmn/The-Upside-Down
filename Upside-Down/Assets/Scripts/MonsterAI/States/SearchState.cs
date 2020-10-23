@@ -7,7 +7,7 @@ public class SearchState : State
 {
     MonsterAI myMonsterAi;
     FPSController myPlayer;
-
+    AudioManager audioManager;
     bool isPlayerTooSlow;
 
     float myCooldownTimer = 0;
@@ -27,6 +27,7 @@ public class SearchState : State
     public override void StartState()
     {
         myCooldownTimer = 0;
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("MonsterCry");
     }
 
     public override IEnumerator Do()

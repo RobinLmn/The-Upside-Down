@@ -1394,6 +1394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb162f501cb1834b8bf0271f5b340de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   FC: {fileID: 32877645}
   cameraTurnTime: 1.5
   gravityFlipTime: 1
@@ -1584,6 +1585,34 @@ MonoBehaviour:
     minTimeBetweenSounds: 0
     maxTimeBetweenSounds: 0
     name: GravityReverse
+  - sounds:
+    - clip: {fileID: 8300000, guid: 8b9d929f9eea4a448add17fed675ee77, type: 3}
+      volume: 1
+      volumeVariance: 0.204
+      pitch: 1.06
+      pitchVariance: 0.524
+      loop: 0
+      mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    active: 1
+    volume: 0.402
+    minTimeBetweenSounds: 0
+    maxTimeBetweenSounds: 0
+    name: MonsterCry
+  - sounds:
+    - clip: {fileID: 8300000, guid: 66d2eafcdb96ae64e8114bf91dfd9f6a, type: 3}
+      volume: 1
+      volumeVariance: 0.204
+      pitch: 1.06
+      pitchVariance: 0.524
+      loop: 0
+      mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    active: 1
+    volume: 0.402
+    minTimeBetweenSounds: 0
+    maxTimeBetweenSounds: 0
+    name: MonsterEating
   constantlyPlayingSounds:
   - sounds:
     - clip: {fileID: 8300000, guid: 3dd11bbb8483ffe42a43c45fb2aeee62, type: 3}
@@ -1699,19 +1728,40 @@ MonoBehaviour:
       pitchVariance: 1
       loop: 0
       mixerGroup: {fileID: 0}
+    - clip: {fileID: 8300000, guid: 37d47514a71025b4086fda7332c4ae6a, type: 3}
+      volume: 0.23
+      volumeVariance: 0.602
+      pitch: 1.01
+      pitchVariance: 0.7
+      loop: 0
+      mixerGroup: {fileID: 0}
     source: {fileID: 0}
     active: 1
     volume: 1
-    minTimeBetweenSounds: 10
-    maxTimeBetweenSounds: 30
+    minTimeBetweenSounds: 30
+    maxTimeBetweenSounds: 40
     name: Whispers
-  - sounds: []
+  - sounds:
+    - clip: {fileID: 8300000, guid: 9c26a82474e48314eac3df6310d57be6, type: 3}
+      volume: 0.64
+      volumeVariance: 0.4
+      pitch: 1.09
+      pitchVariance: 0.64
+      loop: 0
+      mixerGroup: {fileID: 0}
+    - clip: {fileID: 8300000, guid: 874ee5c772eef7940abaf1a52c22fd24, type: 3}
+      volume: 0.72
+      volumeVariance: 0.34
+      pitch: 1
+      pitchVariance: 0.45
+      loop: 0
+      mixerGroup: {fileID: 0}
     source: {fileID: 0}
-    active: 0
+    active: 1
     volume: 0
-    minTimeBetweenSounds: 0
-    maxTimeBetweenSounds: 0
-    name: 
+    minTimeBetweenSounds: 5
+    maxTimeBetweenSounds: 20
+    name: RandomCreepySounds
 --- !u!4 &1919812875
 Transform:
   m_ObjectHideFlags: 0
