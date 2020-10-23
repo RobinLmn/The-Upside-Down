@@ -41,7 +41,7 @@ public class Pusher : MonoBehaviour
         // then you can also multiply the push velocity by that.
 
         // Apply the push
-        Debug.Log("based");
+        //Debug.Log("based");
         body.velocity = pushDir * pushPower *cc.velocity.magnitude * cc.velocity.magnitude;
     }
 }

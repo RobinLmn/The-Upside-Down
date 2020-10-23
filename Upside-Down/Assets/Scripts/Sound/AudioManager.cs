@@ -3,23 +3,17 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-/* TODO: Separate sounds into different categories:
-- Ambient and constantly playing (Change audio files to different format so can have fully looping)
-- Ambient and played at random times
-- Called to play by event in game
-
+/* TODO: Add particle effect and different monster sound for SearchState, AttackState
+SearchState = more urgent, AttackState = Death
 */
 public class AudioManager : MonoBehaviour
 {
-
+	
 	public static AudioManager instance;
-
 	public AudioMixerGroup mixerGroup;
-
 	public SoundGroup[] triggeredSounds;
 	public SoundGroup[] constantlyPlayingSounds;
 	public SoundGroup[] randomlyPlayedSounds;
-
 	void Awake()
 	{
 		if (instance != null)
@@ -50,7 +44,6 @@ public class AudioManager : MonoBehaviour
 
 	IEnumerator PlayRandomlyPlayedSoundGroup(SoundGroup soundGroup) {
 		while (soundGroup.active) {
-
 			int randomIndex = UnityEngine.Random.Range(0, soundGroup.sounds.Length);
 			Sound s = soundGroup.sounds[randomIndex];
 
@@ -60,7 +53,7 @@ public class AudioManager : MonoBehaviour
 
 			float randomTime = UnityEngine.Random.Range(soundGroup.minTimeBetweenSounds, soundGroup.maxTimeBetweenSounds);
 			soundGroup.source.Play();
-			Debug.Log(randomTime);
+			//Debug.Log(randomTime);
 			yield return new WaitForSeconds(randomTime);
 
 		}
@@ -83,6 +76,10 @@ public class AudioManager : MonoBehaviour
 		}
 	}
 
+	public AudioSource GetConstantlyPlayingAudioSource(string soundGroup) {
+		return Array.Find(constantlyPlayingSounds, item => item.name == soundGroup).source;
+	}
+
 	public void StartLoopingSoundGroup(string soundGroup) {
 		SoundGroup sg = Array.Find(constantlyPlayingSounds, item => item.name == soundGroup);
 		Debug.Log(soundGroup + "start");
@@ -97,12 +94,12 @@ public class AudioManager : MonoBehaviour
 
 	public void StartRandomlyPlayedSoundGroup(string soundGroup) {
 		SoundGroup sg = Array.Find(randomlyPlayedSounds, item => item.name == soundGroup);
-		sg.source.mute = !sg.source.mute;
+		sg.source.mute = false;
 	}
 
 	public void StopRandomlyPlayedSoundGroup(string soundGroup) {
 		SoundGroup sg = Array.Find(randomlyPlayedSounds, item => item.name == soundGroup);
-		sg.source.mute = !sg.source.mute;
+		sg.source.mute = true;
 	}
 
 	public void Play(string sound)
@@ -121,7 +118,10 @@ public class AudioManager : MonoBehaviour
 		soundGroup.source.volume = soundGroup.volume * s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
 		soundGroup.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
 
-		soundGroup.source.Play();
+		if (!soundGroup.source.isPlaying)
+		{
+			soundGroup.source.Play();
+		}
 
 	}
 

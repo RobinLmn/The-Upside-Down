@@ -5,23 +5,25 @@ using UnityEngine;
 
 public class AttackState : State
 {
-    MonsterAI myMonster;
+    MonsterAI myMonsterAi;
     bool isGameOver = false;
 
     public AttackState(MonsterAI aMonster)
     {
-        myMonster = aMonster;
+        myMonsterAi = aMonster;
     }
 
     public override void StartState()
     {
+        myMonsterAi.SetSpeedZero();
+        Debug.Log("Player Dies");
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("MonsterEating");
         isGameOver = true;
     }
 
     public override IEnumerator Do()
     {
         /** TODO : Respawn Mechanic **/
-        Debug.Log("Player Dies"); 
         yield break;
     }
 
