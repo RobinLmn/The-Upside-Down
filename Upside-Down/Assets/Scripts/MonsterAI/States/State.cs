@@ -5,9 +5,6 @@ using UnityEngine;
 
 public abstract class State
 {
-    float timer;
-    float timer2;
-
     public virtual void StartState()
     {
         return;
@@ -16,53 +13,12 @@ public abstract class State
     {
         yield break;
     }
-
+    public virtual void ExitState()
+    {
+        return;
+    }
     public virtual Type GetTransition()
     {
         return null;
-    }
-
-    public bool Timer(float timeLimit, bool condition)
-    {
-        if (condition)
-        {
-            if (timer < timeLimit)
-            {
-                timer += Time.deltaTime;
-            }
-            else
-            {
-                timer = 0;
-                return true;
-            }
-        }
-        else
-        {
-            timer = 0;
-        }
-
-        return false;
-    }
-
-    public bool Timer2(float timeLimit, bool condition)
-    {
-        if (condition)
-        {
-            if (timer2 < timeLimit)
-            {
-                timer2+= Time.deltaTime;
-            }
-            else
-            {
-                timer2 = 0;
-                return true;
-            }
-        }
-        else
-        {
-            timer2 = 0;
-        }
-
-        return false;
     }
 }

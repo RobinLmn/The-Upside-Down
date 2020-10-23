@@ -5,12 +5,12 @@ using TheFirstPerson;
 
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField] private bool isHiding = false;
 
     public static PlayerManager instance;
 
     public GameObject player;
     public CharacterController playerCharController;
+    public Hider hider;
 
     private void Awake()
     {
@@ -19,8 +19,7 @@ public class PlayerManager : MonoBehaviour
 
     public bool IsHiding
     {
-        get { return isHiding; }
-        set { isHiding = value; }
+        get { return hider.isHiding; }
     }
 
     public GameObject Player()

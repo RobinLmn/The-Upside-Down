@@ -32,6 +32,10 @@ public abstract class StateMachine
         Type newStateType = myState.GetTransition();
         myState = allStates[newStateType];
 
-        if (myState  != prevState) { myState.StartState(); }
+        if (myState  != prevState) 
+        {
+            prevState.ExitState();
+            myState.StartState(); 
+        }
     }
 }
