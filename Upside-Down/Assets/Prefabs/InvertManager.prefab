@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb162f501cb1834b8bf0271f5b340de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   FC: {fileID: 0}
   hider: {fileID: 0}
   gravityFlipTime: 1
