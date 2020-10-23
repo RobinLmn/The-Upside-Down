@@ -11,6 +11,8 @@ public class RoamState : State // Monster is roaming around the map
     NavMeshAgent _agent;
     FPSController _player;
 
+    ParticleSystem searchStateFog;
+
     float roamTimer = 0f;
 
     public RoamState(MonsterScript monsterScript, FPSController player)
@@ -23,6 +25,9 @@ public class RoamState : State // Monster is roaming around the map
 	{
         roamTimer = 0f;
         _monsterScript.SetSpeedZero();
+
+        searchStateFog = GameObject.Find("SearchStateFog").GetComponent<ParticleSystem>();
+        searchStateFog.Stop();
     }
 
 	// Runs in Update

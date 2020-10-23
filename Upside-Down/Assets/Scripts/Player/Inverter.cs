@@ -6,6 +6,7 @@ using Cinemachine;
 
 public class Inverter : MonoBehaviour
 {
+    public AudioManager audioManager;
     public FPSController FC;
     public Hider hider;
 
@@ -30,6 +31,8 @@ public class Inverter : MonoBehaviour
     {
         if (inverted)
             Invert();
+
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     private void Update()
@@ -68,7 +71,13 @@ public class Inverter : MonoBehaviour
             normalVCamera.enabled = true;
             invertedVCamera.enabled = false;
         }
+<<<<<<< HEAD
 
+=======
+        startTime = Time.time;
+        endTime = Time.time + cameraTurnTime;
+        audioManager.Play("GravityReverse");
+>>>>>>> main
 		StartCoroutine(LerpGravity());
 	}
 

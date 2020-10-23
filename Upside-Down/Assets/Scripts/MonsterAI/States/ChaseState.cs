@@ -13,6 +13,8 @@ public class ChaseState : State
     NavMeshAgent _agent;
     FPSController _player;
 
+    ParticleSystem searchStateFog;
+
     public ChaseState(MonsterScript monsterScript, FPSController player)
     {
         _player = player;
@@ -23,6 +25,10 @@ public class ChaseState : State
 
     public override void StartState()
     {
+        searchStateFog = GameObject.Find("SearchStateFog").GetComponent<ParticleSystem>();
+        searchStateFog.Play();
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("MonsterCry");
+
         chaseTimer = 0f;
     }
 
