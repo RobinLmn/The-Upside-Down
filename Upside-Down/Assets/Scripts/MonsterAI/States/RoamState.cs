@@ -6,6 +6,7 @@ using TheFirstPerson;
 
 public class RoamState : State
 {
+    ParticleSystem searchStateFog;
     MonsterAI myMonsterAi;
     FPSController myPlayer;
 
@@ -27,6 +28,8 @@ public class RoamState : State
 	public override void StartState()
 	{
         myMonsterAi.SetSpeedZero();
+        searchStateFog = GameObject.Find("SearchStateFog").GetComponent<ParticleSystem>();
+        searchStateFog.Stop();
     }
 
 	// Runs in Update
