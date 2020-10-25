@@ -1,0 +1,238 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3250133577332879515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3250133577332879513}
+  - component: {fileID: 3250133577332879512}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3250133577332879513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3250133577332879515}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.303196, y: 2.21, z: 7.6994905}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3250133577332879512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3250133577332879515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb107bf3754f04184813ed25f7e5111b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  triggeredSounds:
+  - sounds:
+    - clip: {fileID: 8300000, guid: e13d32f40497ded47b07d6a3e51e5c59, type: 3}
+      volume: 1
+      volumeVariance: 0.204
+      pitch: 1.06
+      pitchVariance: 0.524
+      loop: 0
+      mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    active: 1
+    volume: 0.402
+    minTimeBetweenSounds: 0
+    maxTimeBetweenSounds: 0
+    name: GravityReverse
+  - sounds:
+    - clip: {fileID: 8300000, guid: 8b9d929f9eea4a448add17fed675ee77, type: 3}
+      volume: 1
+      volumeVariance: 0.204
+      pitch: 1.06
+      pitchVariance: 0.524
+      loop: 0
+      mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    active: 1
+    volume: 0.402
+    minTimeBetweenSounds: 0
+    maxTimeBetweenSounds: 0
+    name: MonsterCry
+  - sounds:
+    - clip: {fileID: 8300000, guid: 66d2eafcdb96ae64e8114bf91dfd9f6a, type: 3}
+      volume: 1
+      volumeVariance: 0.204
+      pitch: 1.06
+      pitchVariance: 0.524
+      loop: 0
+      mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    active: 1
+    volume: 0.402
+    minTimeBetweenSounds: 0
+    maxTimeBetweenSounds: 0
+    name: MonsterEating
+  constantlyPlayingSounds:
+  - sounds:
+    - clip: {fileID: 8300000, guid: 3dd11bbb8483ffe42a43c45fb2aeee62, type: 3}
+      volume: 0.451
+      volumeVariance: 0.126
+      pitch: 1
+      pitchVariance: 0.534
+      loop: 0
+      mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    active: 1
+    volume: 0.568
+    minTimeBetweenSounds: 0
+    maxTimeBetweenSounds: 0
+    name: Whispers
+  - sounds:
+    - clip: {fileID: 8300000, guid: d5f366f786a93484197c09aac1ea138a, type: 3}
+      volume: 0.466
+      volumeVariance: 0.22
+      pitch: 1
+      pitchVariance: 0.277
+      loop: 0
+      mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    active: 1
+    volume: 0.424
+    minTimeBetweenSounds: 0
+    maxTimeBetweenSounds: 0
+    name: Wind
+  - sounds:
+    - clip: {fileID: 8300000, guid: 2d5574d42eedef14d9670646ed33185d, type: 3}
+      volume: 0.445
+      volumeVariance: 0.167
+      pitch: 1
+      pitchVariance: 0.147
+      loop: 0
+      mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    active: 1
+    volume: 0.507
+    minTimeBetweenSounds: 0
+    maxTimeBetweenSounds: 0
+    name: PlayerBreathing
+  - sounds:
+    - clip: {fileID: 8300000, guid: 6121aa5eded4d184185cea39e242369f, type: 3}
+      volume: 1
+      volumeVariance: 0.277
+      pitch: 1
+      pitchVariance: 0.471
+      loop: 0
+      mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    active: 1
+    volume: 1
+    minTimeBetweenSounds: 0
+    maxTimeBetweenSounds: 0
+    name: MonsterBreathing
+  randomlyPlayedSounds:
+  - sounds:
+    - clip: {fileID: 8300000, guid: 876a3af888cd62349a1aa9df8068b374, type: 3}
+      volume: 1
+      volumeVariance: 0.194
+      pitch: 1
+      pitchVariance: 0.23
+      loop: 0
+      mixerGroup: {fileID: 0}
+    - clip: {fileID: 8300000, guid: 1b9e77ce961d87f4393052d22c454ad0, type: 3}
+      volume: 1
+      volumeVariance: 0.194
+      pitch: 1
+      pitchVariance: 0.299
+      loop: 0
+      mixerGroup: {fileID: 0}
+    - clip: {fileID: 8300000, guid: ab57d2867a1f156498ceb66c8a755daf, type: 3}
+      volume: 1
+      volumeVariance: 0.194
+      pitch: 1
+      pitchVariance: 0.293
+      loop: 0
+      mixerGroup: {fileID: 0}
+    - clip: {fileID: 8300000, guid: 490427a13ab00774db3017904381d605, type: 3}
+      volume: 1
+      volumeVariance: 0.194
+      pitch: 1
+      pitchVariance: 0.293
+      loop: 0
+      mixerGroup: {fileID: 0}
+    - clip: {fileID: 8300000, guid: 80102752d903b3f4ea7ff09589bac20c, type: 3}
+      volume: 1
+      volumeVariance: 0.194
+      pitch: 1
+      pitchVariance: 0.246
+      loop: 0
+      mixerGroup: {fileID: 0}
+    - clip: {fileID: 8300000, guid: 5d8aac1ad61169f498f054e1462f2550, type: 3}
+      volume: 1
+      volumeVariance: 0.194
+      pitch: 1
+      pitchVariance: 0.272
+      loop: 0
+      mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    active: 1
+    volume: 1
+    minTimeBetweenSounds: 6
+    maxTimeBetweenSounds: 15
+    name: Floorboards
+  - sounds:
+    - clip: {fileID: 8300000, guid: e3a4c40ad213a924ea7dbb05add936b8, type: 3}
+      volume: 1
+      volumeVariance: 0.602
+      pitch: 1.01
+      pitchVariance: 1
+      loop: 0
+      mixerGroup: {fileID: 0}
+    - clip: {fileID: 8300000, guid: 37d47514a71025b4086fda7332c4ae6a, type: 3}
+      volume: 0.23
+      volumeVariance: 0.602
+      pitch: 1.01
+      pitchVariance: 0.7
+      loop: 0
+      mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    active: 1
+    volume: 1
+    minTimeBetweenSounds: 30
+    maxTimeBetweenSounds: 40
+    name: Whispers
+  - sounds:
+    - clip: {fileID: 8300000, guid: 9c26a82474e48314eac3df6310d57be6, type: 3}
+      volume: 0.64
+      volumeVariance: 0.4
+      pitch: 1.09
+      pitchVariance: 0.64
+      loop: 0
+      mixerGroup: {fileID: 0}
+    - clip: {fileID: 8300000, guid: 874ee5c772eef7940abaf1a52c22fd24, type: 3}
+      volume: 0.72
+      volumeVariance: 0.34
+      pitch: 1
+      pitchVariance: 0.45
+      loop: 0
+      mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    active: 1
+    volume: 0
+    minTimeBetweenSounds: 5
+    maxTimeBetweenSounds: 20
+    name: RandomCreepySounds
