@@ -24,8 +24,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - NoiseMagnitude: 0.05
-    - Vector1_634B36CC: 4
+    - NoiseMagnitude: 0.1
+    - Vector1_634B36CC: 500
     - Vector1_F9AB0B26: 1
     - _NoiseScale: 500
     - _NoiseSpeed: 1
