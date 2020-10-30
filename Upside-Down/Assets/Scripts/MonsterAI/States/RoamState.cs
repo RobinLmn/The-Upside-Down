@@ -11,7 +11,7 @@ public class RoamState : State // Monster is roaming around the map
     NavMeshAgent _agent;
     FPSController _player;
 
-    ParticleSystem searchStateFog;
+    ParticleSystem chaseStateFog;
 
     float roamTimer = 0f;
 
@@ -19,6 +19,8 @@ public class RoamState : State // Monster is roaming around the map
     {
         _player = player;
         _monsterScript = monsterScript;
+
+        _agent = _monsterScript.GetComponent<NavMeshAgent>();
     }
 
 	public override void StartState()
@@ -26,8 +28,10 @@ public class RoamState : State // Monster is roaming around the map
         roamTimer = 0f;
         _monsterScript.SetSpeedZero();
 
-        searchStateFog = GameObject.Find("SearchStateFog").GetComponent<ParticleSystem>();
-        searchStateFog.Stop();
+        chaseStateFog = GameObject.Find("ChaseStateFog").GetComponent<ParticleSystem>();
+        chaseStateFog.Stop();
+
+        _agent.isStopped = true;
     }
 
 	// Runs in Update
@@ -50,7 +54,12 @@ public class RoamState : State // Monster is roaming around the map
         else return typeof(RoamState);
     }
 
-    bool IsPlayerTooClose() // If player is in aggro range, transition to search
+	public override void ExitState()
+	{
+        _agent.isStopped = false;
+	}
+
+	bool IsPlayerTooClose() // If player is in aggro range, transition to chase
     {
         // Make this calculate the path to player instead?
         float distToPlayer = Vector3.Distance(_player.transform.position, _monsterScript.transform.position);
