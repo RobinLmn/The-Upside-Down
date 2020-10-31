@@ -15,6 +15,8 @@ public class RoamState : State // Monster is roaming around the map
 
     float roamTimer = 0f;
 
+    private RaycastHit hit;
+
     public RoamState(MonsterScript monsterScript, FPSController player)
     {
         _player = player;
@@ -31,12 +33,13 @@ public class RoamState : State // Monster is roaming around the map
         chaseStateFog = GameObject.Find("ChaseStateFog").GetComponent<ParticleSystem>();
         chaseStateFog.Stop();
 
-        _agent.isStopped = true;
+        _agent.speed = _monsterScript.roamSpeed;
     }
 
 	// Runs in Update
 	public override IEnumerator Do()
     {
+        MoveTowardsPlayer();
         // Make monster move in a random direction using navmesh
 
         roamTimer += Time.deltaTime;
@@ -54,12 +57,17 @@ public class RoamState : State // Monster is roaming around the map
         else return typeof(RoamState);
     }
 
-	public override void ExitState()
-	{
-        _agent.isStopped = false;
-	}
+    private void MoveTowardsPlayer() // Raycast player position to the ground. Move towards this position
+    {
+        int layerMask = LayerMask.GetMask("Ground");
+        Physics.Raycast(_player.transform.position, Vector3.down, out hit, layerMask);
 
-	bool IsPlayerTooClose() // If player is in aggro range, transition to chase
+
+
+        _agent.SetDestination(hit.point);
+    }
+
+    bool IsPlayerTooClose() // If player is in aggro range, transition to chase
     {
         // Make this calculate the path to player instead?
         float distToPlayer = Vector3.Distance(_player.transform.position, _monsterScript.transform.position);

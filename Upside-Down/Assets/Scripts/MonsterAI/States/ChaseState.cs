@@ -32,6 +32,7 @@ public class ChaseState : State
         GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("MonsterCry");
 
         chaseTimer = 0f;
+        _agent.speed = _monsterScript.chaseSpeed;
     }
 
     public override IEnumerator Do()
