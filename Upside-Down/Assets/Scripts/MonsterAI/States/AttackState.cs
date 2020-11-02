@@ -9,7 +9,7 @@ public class AttackState : State
 {
     MonsterScript _monsterScript;
     FPSController _player;
-
+    ParticleSystem deathParticles;
     public bool isGameOver = false;
 
     public AttackState(MonsterScript monsterScript, FPSController player)
@@ -26,6 +26,8 @@ public class AttackState : State
         // Gameover logic should live in a GameManager class. Modify later
         isGameOver = true;
         GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("MonsterEating");
+        deathParticles = GameObject.Find("DeathParticles").GetComponent<ParticleSystem>();
+        deathParticles.Play();
         GameObject.Find("GameManager").GetComponent<GameManager>().endGame();
     }
 
