@@ -13,15 +13,6 @@ public class AudioManager : MonoBehaviour
 	public SoundGroup[] randomlyPlayedSounds;
 	void Awake()
 	{
-		if (instance != null)
-		{
-			Destroy(gameObject);
-		}
-		else
-		{
-			instance = this;
-			DontDestroyOnLoad(gameObject);
-		}
 
 		foreach (SoundGroup soundGroup in constantlyPlayingSounds) {
 			soundGroup.source = gameObject.AddComponent<AudioSource>() as AudioSource;

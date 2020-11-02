@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheFirstPerson;
+using UnityEngine.SceneManagement;
 
 public class AttackState : State
 {
@@ -23,8 +24,9 @@ public class AttackState : State
         Debug.Log("Player Dies");
 
         // Gameover logic should live in a GameManager class. Modify later
-        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("MonsterEating");
         isGameOver = true;
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("MonsterEating");
+        GameObject.Find("GameManager").GetComponent<GameManager>().endGame();
     }
 
     public override IEnumerator Do()
