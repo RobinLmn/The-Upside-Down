@@ -6,7 +6,7 @@ using TheFirstPerson;
 public class Pusher : MonoBehaviour
 {
     // this script pushes all rigidbodies that the character touches
-    public float pushPower = 2.0f;
+    public float pushPower = 0.1f;
     //FPSController FC;
     CharacterController cc;
     public float upward;

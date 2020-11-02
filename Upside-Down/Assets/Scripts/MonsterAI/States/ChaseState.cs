@@ -13,7 +13,9 @@ public class ChaseState : State
     NavMeshAgent _agent;
     FPSController _player;
 
-    ParticleSystem searchStateFog;
+    ParticleSystem chaseStateFog;
+
+    private RaycastHit hit;
 
     public ChaseState(MonsterScript monsterScript, FPSController player)
     {
@@ -25,20 +27,16 @@ public class ChaseState : State
 
     public override void StartState()
     {
-        searchStateFog = GameObject.Find("SearchStateFog").GetComponent<ParticleSystem>();
-        searchStateFog.Play();
+        chaseStateFog = GameObject.Find("ChaseStateFog").GetComponent<ParticleSystem>();
+        chaseStateFog.Play();
         GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("MonsterCry");
 
         chaseTimer = 0f;
+        _agent.speed = _monsterScript.chaseSpeed;
     }
 
     public override IEnumerator Do()
     {
-        // Monster runs towards player
-        //Vector3 tempVel = Vector3.Lerp(_monsterRb.velocity, _monsterScript.chaseSpeed * _monsterScript.GetVectorToPlayer(), 0.1f);
-        //tempVel.y = 0f;
-        //_monsterRb.velocity = tempVel;
-
         MoveTowardsPlayer();
 
         // Update timer
@@ -67,9 +65,14 @@ public class ChaseState : State
         }
     }
 
-    private void MoveTowardsPlayer()
+    private void MoveTowardsPlayer() // Raycast player position to the ground. Move towards this position
     {
-        _agent.SetDestination(_player.transform.position);
+        int layerMask = LayerMask.GetMask("Ground");
+        Physics.Raycast(_player.transform.position, Vector3.down, out hit, layerMask);
+
+
+
+        _agent.SetDestination(hit.point);
     }
 
     private bool IsPlayerInAttackRange() // If player is in attack range, return true

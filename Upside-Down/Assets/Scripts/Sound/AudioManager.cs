@@ -3,9 +3,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-/* TODO: Add particle effect and different monster sound for SearchState, AttackState
-SearchState = more urgent, AttackState = Death
-*/
 public class AudioManager : MonoBehaviour
 {
 	

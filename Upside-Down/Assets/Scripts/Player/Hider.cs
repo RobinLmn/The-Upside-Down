@@ -97,6 +97,17 @@ public class Hider : MonoBehaviour
             hidingCamera.invertedVCamera.enabled = false;
             hidingCamera.normalVCamera.enabled = false;
 
+            if (invertManager.IsInverted())
+            {
+                mainNormalVCamera.enabled = false;
+                mainInvertedVCamera.enabled = true;
+            }
+            else
+            {
+                mainNormalVCamera.enabled = true;
+                mainInvertedVCamera.enabled = false;
+            }
+
             isHiding = false;
             //hidingVCamera.enabled = false;
             fpsController.moveSpeed = moveSpeed;
