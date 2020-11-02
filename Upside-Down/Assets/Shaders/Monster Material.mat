@@ -27,7 +27,7 @@ Material:
     - NoiseMagnitude: 0.1
     - Vector1_634B36CC: 500
     - Vector1_F9AB0B26: 1
-    - _NoiseScale: 500
+    - _NoiseScale: 1
     - _NoiseSpeed: 1
     - _isStatic: 1
     m_Colors: []

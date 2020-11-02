@@ -57,8 +57,8 @@ public class InvertManager : MonoBehaviour
 
         if (timer >= (curInvertPeriod + Random.Range(-randAmount, randAmount))) // When the timer passes the invert period for the current state, invert
         {
-            //inverter.Invert();
-            timer = 0f;
+			inverter.Invert();
+			timer = 0f;
         }
     }
 

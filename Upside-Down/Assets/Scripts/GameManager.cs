@@ -5,7 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject gameoverCanvas;
+
     public void endGame() {
+        Debug.Log("gameover");
+        gameoverCanvas.SetActive(true);
         StartCoroutine(EndGame());
     }
 
